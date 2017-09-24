@@ -331,29 +331,29 @@ public class NetMedicaExportController {
 		if(t0 == 0){
 			image = new ImageIcon(NetMedicaExport.class.getResource("img/0.png"));
 		} else if (t0 > 0 && t0 <= 10){
-			image = new ImageIcon(NetMedicaExport.class.getResource("img/0<X<10.png"));
+			image = new ImageIcon(NetMedicaExport.class.getResource("img/0X10.png"));
 		} else if(t0 > 10 && t0 < 15) {
-			image = new ImageIcon(NetMedicaExport.class.getResource("img/10<X<15.png"));
+			image = new ImageIcon(NetMedicaExport.class.getResource("img/10X15.png"));
 		} else if (t0 == 15){
 			image = new ImageIcon(NetMedicaExport.class.getResource("img/15.png"));
 		} else if (t0 > 15 && t0 < 20){
-			image = new ImageIcon(NetMedicaExport.class.getResource("img/15<X<20.png"));
+			image = new ImageIcon(NetMedicaExport.class.getResource("img/15X20.png"));
 		} else if (t0 == 20){
 			image = new ImageIcon(NetMedicaExport.class.getResource("img/20.png"));
 		} else if (t0 > 20 && t0 < 25){
-			image = new ImageIcon(NetMedicaExport.class.getResource("img/20<X<25.png"));
+			image = new ImageIcon(NetMedicaExport.class.getResource("img/20X25.png"));
 		} else if (t0 == 25){
 			image = new ImageIcon(NetMedicaExport.class.getResource("img/25.png"));
 		} else if (t0 > 25 && t0 < 30){
-			image = new ImageIcon(NetMedicaExport.class.getResource("img/25>X>30.png"));
+			image = new ImageIcon(NetMedicaExport.class.getResource("img/25X30.png"));
 		} else if (t0 == 30){
 			image = new ImageIcon(NetMedicaExport.class.getResource("img/30.png"));
 		} else if (t0 > 30 && t0 < 35){
-			image = new ImageIcon(NetMedicaExport.class.getResource("img/30<X<35.png"));
+			image = new ImageIcon(NetMedicaExport.class.getResource("img/30X35.png"));
 		} else if (t0 == 35){
 			image = new ImageIcon(NetMedicaExport.class.getResource("img/35.png"));
 		} else{
-			image = new ImageIcon(NetMedicaExport.class.getResource("img/30<X<35.png"));
+			image = new ImageIcon(NetMedicaExport.class.getResource("img/30X35.png"));
 		}
 		
 		if(descr.equals("graph1")){
