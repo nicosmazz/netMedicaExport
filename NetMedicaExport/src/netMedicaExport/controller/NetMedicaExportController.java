@@ -79,7 +79,8 @@ public class NetMedicaExportController {
 			public void actionPerformed(ActionEvent ev) {
 				clearAll();
 				String userDir = System.getProperty("user.home");
-				JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop/IM");
+				//userDir + "/Desktop/IM"
+				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.showOpenDialog(frame);
 				File file = fileChooser.getSelectedFile();
 				if (file != null) {
@@ -214,6 +215,12 @@ public class NetMedicaExportController {
 						view.getPanelStatoE1Dx().removeAll();
 						view.revalidate();
 						view.repaint();
+						line1 = false;
+						line2= false;
+						intersectionPoint.remove("graph1X1");
+						intersectionPoint.remove("graph1Y1");
+						intersectionPoint.remove("graph1X2");
+						intersectionPoint.remove("graph1Y2");
 					}
 				}
 			} else{
@@ -242,6 +249,12 @@ public class NetMedicaExportController {
 						view.getPanelStatoE1Sx().removeAll();
 						view.revalidate();
 						view.repaint();
+						line3 = false;
+						line4 = false;
+						intersectionPoint.remove("graph2X1");
+						intersectionPoint.remove("graph2Y1");
+						intersectionPoint.remove("graph2X2");
+						intersectionPoint.remove("graph2Y2");
 					}
 				}
 			}
