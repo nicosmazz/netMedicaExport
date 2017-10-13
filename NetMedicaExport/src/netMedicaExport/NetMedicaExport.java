@@ -47,6 +47,7 @@ public class NetMedicaExport {
 		frame = new JFrame();
 		frame.setTitle("NetMedica Export");
 		frame.setBounds(100, 100, 1100, 800);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		NetMedicaExportPanel netMedicaExportPanel = new NetMedicaExportPanel();

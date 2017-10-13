@@ -285,9 +285,11 @@ public class NetMedicaExportPanel extends JPanel {
 		add(panelSouth, BorderLayout.SOUTH);
 
 		btnExport = new JButton("Export");
+		btnExport.setEnabled(false);
 		panelSouth.add(btnExport);
 
 		btnPulisci = new JButton("Pulisci");
+		btnPulisci.setEnabled(false);
 		panelSouth.add(btnPulisci);
 	}
 

@@ -78,8 +78,8 @@ public class NetMedicaExportController {
 		mntmSelezionaFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				clearAll();
-				String userDir = System.getProperty("user.home");
-				JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop/IM");
+				//String userDir = System.getProperty("user.home");userDir + "/Desktop/IM"
+				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.showOpenDialog(frame);
 				File file = fileChooser.getSelectedFile();
 				if (file != null) {
@@ -88,7 +88,8 @@ public class NetMedicaExportController {
 						SAXParser saxParser = factory.newSAXParser();
 						SaxHandler saxHandler = new SaxHandler(netMedicaController);
 						saxParser.parse(file, saxHandler);
-
+						view.getBtnExport().setEnabled(true);
+						view.getBtnPulisci().setEnabled(true);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -108,7 +109,7 @@ public class NetMedicaExportController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LoginController login=new LoginController();
+				new LoginController();
 			}
 		});
 	}
@@ -401,6 +402,12 @@ public class NetMedicaExportController {
 		view.getPanelV0Valore().removeAll();
 		view.getPanelStatoE1Sx().removeAll();
 		view.getPanelCenter().setVisible(false);
+		view.getBtnExport().setEnabled(false);
+		view.getBtnPulisci().setEnabled(false);
+		line1 = false;
+		line2 = false;
+		line3 = false;
+		line4 = false;
 		view.validate();
 		view.repaint();
 	}
