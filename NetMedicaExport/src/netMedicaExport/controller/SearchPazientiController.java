@@ -34,7 +34,7 @@ public class SearchPazientiController {
 	private NetMedicaSearch panelSearch;
 
 		public SearchPazientiController(){
-			String soapEndpointUrl = "http://cloudtest.netmedicaitalia.it/wsdl.php";
+			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		    String soapAction = "urn:FIMMGwsdl#search_pazienti";
 		    panelSearch=new NetMedicaSearch();
 			panelSearch.getBtnSearch().addActionListener(new ActionListener() {

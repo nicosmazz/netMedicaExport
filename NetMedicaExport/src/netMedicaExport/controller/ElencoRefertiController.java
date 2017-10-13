@@ -30,7 +30,7 @@ public class ElencoRefertiController {
 	public static String verificaErroreElencoReferti=null;
 				    
 	public ElencoRefertiController(){
-		String soapEndpointUrl = "http://cloudtest.netmedicaitalia.it/wsdl.php";
+		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#elenco_RefertiPaziente";
 		callSoapWebService(soapEndpointUrl, soapAction);
 	}

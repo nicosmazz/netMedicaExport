@@ -37,7 +37,7 @@ public class LoginController {
 	
 			    
 	public LoginController(){
-		String soapEndpointUrl = "http://cloudtest.netmedicaitalia.it/wsdl.php";
+		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn:FIMMGwsdl#login";
 		barra=new ProgressBar();
 		panelLogin=new NetMedicaLogin();

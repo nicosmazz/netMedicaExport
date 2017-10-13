@@ -38,7 +38,7 @@ public class InvioRefertoController {
 	private NetMedicaInvioReferto panelInvio;
 				    
 	public InvioRefertoController(){
-		String soapEndpointUrl = "http://cloudtest.netmedicaitalia.it/wsdl.php";
+		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#invio_RefertoPaziente";
 		CodificaBase64Binary codifica= new CodificaBase64Binary();
 		panelInvio=new NetMedicaInvioReferto();

@@ -11,9 +11,10 @@ public class CodificaBase64Binary {
 		
 		public CodificaBase64Binary(){
 
+			//referto-venoscreen.pdf
 			//20170112_1858_b_b_19701221.vs
-			StringBuilder result = new StringBuilder("");
-			File file = new File("resources/referto-venoscreen.pdf");
+			StringBuilder result = new StringBuilder("20170112_1858_b_b_19701221.vs");
+			File file = new File("resources/");
 			try (Scanner scanner = new Scanner(file)) {
 				while (scanner.hasNextLine()) {
 					String line = scanner.nextLine();
