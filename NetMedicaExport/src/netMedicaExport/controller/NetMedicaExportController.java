@@ -103,6 +103,14 @@ public class NetMedicaExportController {
 				clearAll();
 			}
 		});
+		
+		view.getBtnExport().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginController login=new LoginController();
+			}
+		});
 	}
 
 	public void showExam(Patient patient) {
