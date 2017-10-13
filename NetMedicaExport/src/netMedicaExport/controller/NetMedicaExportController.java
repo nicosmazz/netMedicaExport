@@ -79,8 +79,7 @@ public class NetMedicaExportController {
 			public void actionPerformed(ActionEvent ev) {
 				clearAll();
 				String userDir = System.getProperty("user.home");
-				//userDir + "/Desktop/IM"
-				JFileChooser fileChooser = new JFileChooser();
+				JFileChooser fileChooser = new JFileChooser(userDir + "/Desktop/IM");
 				fileChooser.showOpenDialog(frame);
 				File file = fileChooser.getSelectedFile();
 				if (file != null) {
