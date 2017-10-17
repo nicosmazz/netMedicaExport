@@ -25,9 +25,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import netMedicaExport.view.NetMedicaInvioReferto;
 import netMedicaExport.view.ProgressBar;
-import netMedicaExport.utility.CodificaBase64Binary;
 
-	
+
 public class InvioRefertoController {
 	
 	public static String idTipoDocumento="";
@@ -40,7 +39,6 @@ public class InvioRefertoController {
 	public InvioRefertoController(){
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#invio_RefertoPaziente";
-		CodificaBase64Binary codifica= new CodificaBase64Binary();
 		panelInvio=new NetMedicaInvioReferto();
 		panelInvio.getBtnInvio().addActionListener(new ActionListener() {
 			
@@ -94,7 +92,7 @@ public class InvioRefertoController {
 		SOAPElement soapBodyElem7 = soapBodyElem.addChildElement(dataDoc);
 		soapBodyElem7.addTextNode(dataDocumento);
 		SOAPElement soapBodyElem8 = soapBodyElem.addChildElement(referto);
-		soapBodyElem8.addTextNode(CodificaBase64Binary.encodedBytes.toString());
+		soapBodyElem8.addTextNode(new String(CodificationRefertoController.encodedBytes));
 		SOAPElement soapBodyElem9 = soapBodyElem.addChildElement(idEsito1);
 		soapBodyElem9.addTextNode(idEsito);
 		
