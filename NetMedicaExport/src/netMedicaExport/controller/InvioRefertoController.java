@@ -29,6 +29,7 @@ public class InvioRefertoController {
 	private static String identificativo="";
 	private static String dataDocumento="";
 	private static String idEsito="";
+	private static String idReferto="";
 	private static String verificaErroreInvio=null;
 	private NetMedicaInvioReferto panelInvio;
 	private static byte[] encodedBytes;
@@ -52,13 +53,14 @@ public class InvioRefertoController {
 				identificativo=panelInvio.getTxtIdentificativo().getText();
 				dataDocumento=panelInvio.getTxtDataDocumento().getText();
 				idEsito=panelInvio.getTxtIdEsito().getText();
-				if((!idTipoDocumento.equals(""))&&(!identificativo.equals(""))&&(!dataDocumento.equals(""))&&(!idEsito.equals(""))){
+				idReferto=panelInvio.getTxtIdEsito().getText();
+				if((!idTipoDocumento.equals(""))&&(!identificativo.equals(""))&&(!dataDocumento.equals(""))&&(!idEsito.equals(""))&&(!idReferto.equals(""))){
 					NetMedicaInvioReferto.frameInvio.setVisible(false);
 					NetMedicaInvioReferto.frameInvio.dispose();
 					ProgressBar.frameProgressBar.dispose();
 					callSoapWebService(soapEndpointUrl, soapAction);
 				}
-				else if ((idTipoDocumento.equals(""))||(identificativo.equals(""))||(dataDocumento.equals(""))||(idEsito.equals(""))){
+				else if ((idTipoDocumento.equals(""))||(identificativo.equals(""))||(dataDocumento.equals(""))||(idEsito.equals(""))||(idReferto.equals(""))){
 					NetMedicaInvioReferto.lblError.setVisible(true);
 				}
 				
@@ -71,7 +73,7 @@ public class InvioRefertoController {
 		String invioRefertoPaziente ="invio_RefertoPaziente";
 		String token="token";
 		String keyCartella="keycartella";
-		String idReferto="id_referto";
+		String idRef="id_referto";
 		String idPaz="id_paziente";
 		String idTipoDoc="id_tipodocumento";
 		String identificativo1="identificativo";
@@ -85,8 +87,8 @@ public class InvioRefertoController {
 		soapBodyElem1.addTextNode(stringToken);
 		SOAPElement soapBodyElem2 = soapBodyElem.addChildElement(keyCartella);
 		soapBodyElem2.addTextNode(stringDirectory);
-		SOAPElement soapBodyElem3 = soapBodyElem.addChildElement(idReferto);
-		soapBodyElem3.addTextNode("");
+		SOAPElement soapBodyElem3 = soapBodyElem.addChildElement(idRef);
+		soapBodyElem3.addTextNode(idReferto);
 		SOAPElement soapBodyElem4 = soapBodyElem.addChildElement(idPaz);
 		soapBodyElem4.addTextNode(stringIdPaziente);
 		SOAPElement soapBodyElem5 = soapBodyElem.addChildElement(idTipoDoc);

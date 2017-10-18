@@ -60,6 +60,9 @@ public class NetMedicaExportController {
 	private JFrame frame;
 	private DecimalFormat formatter = new DecimalFormat("#0.00");
 	private NetMedicaExportController netMedicaController;
+	private boolean controlExport=false;
+	private boolean controlFarmaci=false;
+	private boolean controlPatologie=false;
 
 	public NetMedicaExportController(final NetMedicaExportPanel view, JFrame frame) {
 		this.view = view;
@@ -74,6 +77,12 @@ public class NetMedicaExportController {
 		JMenuItem mntmSelezionaFile = new JMenuItem("Seleziona file");
 		mntmSelezionaFile.setIcon(new ImageIcon(NetMedicaExport.class.getResource("img/scegli-file.png")));
 		mnFile.add(mntmSelezionaFile);
+		
+		JMenuItem mntmScaricaFarmaci = new JMenuItem("Scarica l'elenco dei farmaci");
+		mnFile.add(mntmScaricaFarmaci);
+		
+		JMenuItem mntmScaricaPatologie = new JMenuItem("Scarica l'elenco delle patologie");
+		mnFile.add(mntmScaricaPatologie);
 
 		mntmSelezionaFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
@@ -94,6 +103,20 @@ public class NetMedicaExportController {
 						e.printStackTrace();
 					}
 				}
+			}
+		});
+		
+		mntmScaricaFarmaci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				controlFarmaci=true;
+				new LoginController(controlFarmaci,controlPatologie);
+			}
+		});
+		
+		mntmScaricaPatologie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+				controlPatologie=true;
+				new LoginController(controlFarmaci,controlPatologie);
 			}
 		});
 		

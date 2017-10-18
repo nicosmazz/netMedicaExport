@@ -27,16 +27,19 @@ public class NetMedicaInvioReferto extends JFrame{
 	private JPanel panelInsertIdentificativo;
 	private JPanel panelInsertDataDocumento;
 	private JPanel panelInsertIdEsito;
+	private JPanel panelInsertIdReferto;
 	public JPanel panelError;
 	private JLabel lblIdTipoDocumento;
 	private JLabel lblIdentificativo;
 	private JLabel lblDataDocumento;
 	private JLabel lblIdEsito;
+	private JLabel lblIdReferto;
 	public static JLabel lblError;
 	private JTextField txtIdTipoDocumento;
 	private JTextField txtIdentificativo;
 	private JTextField txtDataDocumento;
 	private JTextField txtIdEsito;
+	private JTextField txtIdReferto;
 	private JButton btnInvio;
 	
 	public NetMedicaInvioReferto(){
@@ -47,6 +50,7 @@ public class NetMedicaInvioReferto extends JFrame{
 		panelInsertIdentificativo=new JPanel();
 		panelInsertDataDocumento=new JPanel();
 		panelInsertIdEsito=new JPanel();
+		panelInsertIdReferto=new JPanel();
 		panelError=new JPanel();
 		frameInvio=new JFrame();
 		
@@ -58,29 +62,35 @@ public class NetMedicaInvioReferto extends JFrame{
 		panelInsert.setLayout(new VerticalLayout(0, VerticalLayout.LEFT, VerticalLayout.TOP));
 		content.add(panelInsert);
 		
-		lblIdTipoDocumento=new JLabel("Inserisci l'id del documento: ");
+		lblIdTipoDocumento=new JLabel("Inserisci l'id del tipo di documento: ");
 		panelInsertIdTipoDocumento.add(lblIdTipoDocumento);
 		txtIdTipoDocumento=new JTextField(10);
 		panelInsertIdTipoDocumento.add(txtIdTipoDocumento);
 		panelInsert.add(panelInsertIdTipoDocumento);
 		
-		lblIdentificativo=new JLabel("Inserisci l'identificativo:       ");
+		lblIdentificativo=new JLabel("Inserisci l'identificativo:                  ");
 		panelInsertIdentificativo.add(lblIdentificativo);
 		txtIdentificativo=new JTextField(20);
 		panelInsertIdentificativo.add(txtIdentificativo);
 		panelInsert.add(panelInsertIdentificativo);
 		
-		lblDataDocumento=new JLabel("Inserisci la data:                  ");
+		lblDataDocumento=new JLabel("Inserisci la data:                             ");
 		panelInsertDataDocumento.add(lblDataDocumento);
 		txtDataDocumento=new JTextField(10);
 		panelInsertDataDocumento.add(txtDataDocumento);
 		panelInsert.add(panelInsertDataDocumento);
 		
-		lblIdEsito=new JLabel("Inserisci l'id dell'esito:          ");
+		lblIdEsito=new JLabel("Inserisci l'id dell'esito:                     ");
 		panelInsertIdEsito.add(lblIdEsito);
 		txtIdEsito=new JTextField(10);
 		panelInsertIdEsito.add(txtIdEsito);
 		panelInsert.add(panelInsertIdEsito);
+		
+		lblIdReferto=new JLabel("Inserisci l'id del referto:                  ");
+		panelInsertIdReferto.add(lblIdReferto);
+		txtIdReferto=new JTextField(10);
+		panelInsertIdReferto.add(txtIdReferto);
+		panelInsert.add(panelInsertIdReferto);
 		
 		lblError=new JLabel("Attenzione riempire tutti i campi!");
 		lblError.setForeground(Color.red);
@@ -112,6 +122,10 @@ public class NetMedicaInvioReferto extends JFrame{
 	
 	public JTextField getTxtIdEsito(){
 		return txtIdEsito;
+	}
+	
+	public JTextField getTxtIdReferto(){
+		return txtIdReferto;
 	}
 	
 	public JButton getBtnInvio(){

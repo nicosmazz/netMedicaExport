@@ -33,11 +33,39 @@ public class SearchPazientiController {
 	private static byte[] encodedBytes;
 	private static String stringToken;
 	private static String stringDirectory;
+	private static boolean controlFarmaci=false;
+	private static boolean controlPatologie=false;
 
 		public SearchPazientiController(byte[] bytes, String token, String directory){
 			encodedBytes = bytes;
 			stringToken=token;
 			stringDirectory=directory;
+			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
+		    String soapAction = "urn:FIMMGwsdl#search_pazienti";
+		    panelSearch=new NetMedicaSearch();
+			panelSearch.getBtnSearch().addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					codiceFiscale=panelSearch.getTxtCodicefiscale().getText();
+					if(!codiceFiscale.equals("")){
+						NetMedicaSearch.frameSearch.setVisible(false);
+						NetMedicaSearch.frameSearch.dispose();
+						callSoapWebService(soapEndpointUrl, soapAction);
+					}
+					else if (codiceFiscale.equals("")){
+						NetMedicaSearch.lblError.setVisible(true);
+					}
+					
+				}
+			});     
+		}
+		
+		public SearchPazientiController(String token, String directory, boolean flagFarmaci, boolean flagPatologie){
+			stringToken=token;
+			stringDirectory=directory;
+			controlFarmaci=flagFarmaci;
+			controlPatologie=flagPatologie;
 			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		    String soapAction = "urn:FIMMGwsdl#search_pazienti";
 		    panelSearch=new NetMedicaSearch();
@@ -118,8 +146,16 @@ public class SearchPazientiController {
 				 	Node nodeIdPaziente =elementBody.getElementsByTagName("id_paziente").item(0);
 				 	idPaziente=nodeIdPaziente.getTextContent();
 				 	System.out.println(nodeIdPaziente.getTextContent()+"\n");
-		            new InvioRefertoController(encodedBytes,stringToken,stringDirectory,idPaziente);
-		        }	
+				 	if(controlFarmaci==true){
+				 		new SearchFarmaciController(stringToken,stringDirectory,idPaziente);
+				 	}
+				 	else if (controlPatologie==true){
+				 		new SearchPatologieController(stringToken,stringDirectory,idPaziente);
+				 	}
+				 	else{
+				 		new InvioRefertoController(encodedBytes,stringToken,stringDirectory,idPaziente);
+				 	}	
+		        }
 		        soapConnection.close();
 			}catch (SOAPFaultException e){
 		        try {

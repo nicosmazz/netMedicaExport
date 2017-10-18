@@ -34,9 +34,39 @@ public class LoginController {
 	private static String verificaErroreLogin=null;
 	private NetMedicaLogin panelLogin;
 	private static byte[] encodedBytes;
+	private static boolean controlFarmaci=false;
+	private static boolean controlPatologie=false;
 			    
 	public LoginController(byte[] bytes){
 		encodedBytes = bytes;
+		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
+		String soapAction = "urn:FIMMGwsdl#login";
+		new ProgressBar();
+		panelLogin=new NetMedicaLogin();
+		panelLogin.getBtnLogin().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				username=panelLogin.getTxtUser().getText();
+				password=panelLogin.getTxtPassword().getText();
+				directory=panelLogin.getTxtDirectory().getText();
+				if((!username.equals(""))&&(!password.equals(""))&&(!directory.equals(""))){
+					NetMedicaLogin.frameLogin.setVisible(false);
+					NetMedicaLogin.frameLogin.dispose();
+					callSoapWebService(soapEndpointUrl, soapAction);
+				}
+				else if ((username.equals(""))||(password.equals(""))||(directory.equals(""))){
+					NetMedicaLogin.lblError.setVisible(true);
+				}
+				
+			}
+		});
+		
+	}
+	
+	public LoginController(boolean flagFarmaci, boolean flagPatologie){
+		controlFarmaci=flagFarmaci;
+		controlPatologie=flagPatologie;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn:FIMMGwsdl#login";
 		new ProgressBar();
@@ -101,7 +131,13 @@ public class LoginController {
 			 	Node nodeToken =elementBody.getElementsByTagName("token").item(0);
 			 	token=nodeToken.getTextContent();
 			 	System.out.println(nodeToken.getTextContent()+"\n");
-			 	new SearchPazientiController(encodedBytes,token,directory);
+			 	if(controlFarmaci==true||controlPatologie==true){
+			 		new SearchPazientiController(token,directory,controlFarmaci,controlPatologie);
+			 	}
+			 	else{
+			 		new SearchPazientiController(encodedBytes,token,directory);
+			 	}
+			 	
 			}	
 			soapConnection.close();
 		}catch (SOAPFaultException e){
