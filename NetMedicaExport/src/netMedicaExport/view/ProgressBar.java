@@ -3,10 +3,8 @@ package netMedicaExport.view;
 import java.awt.BorderLayout;
 import java.awt.Container;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JProgressBar;
-import javax.swing.border.Border;
 
 public class ProgressBar {
 	

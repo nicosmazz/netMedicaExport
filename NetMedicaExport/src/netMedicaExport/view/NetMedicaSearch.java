@@ -1,30 +1,24 @@
 package netMedicaExport.view;
 
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
 
-import javax.swing.border.MatteBorder;
 import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import java.awt.Component;
 import java.awt.Container;
-import java.awt.Dimension;
 import netMedicaExport.layout.VerticalLayout;
-import javax.swing.Box;
 
 public class NetMedicaSearch extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static JFrame frameSearch;
 	private JPanel panelSearch;
 	private JPanel panelInsert;

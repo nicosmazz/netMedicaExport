@@ -1,12 +1,10 @@
 package netMedicaExport.controller;
 
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
 import javax.swing.border.Border;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
@@ -20,9 +18,7 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 import javax.xml.ws.soap.SOAPFaultException;
 
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import netMedicaExport.view.NetMedicaInvioReferto;
 import netMedicaExport.view.ProgressBar;
 
@@ -116,7 +112,7 @@ public class InvioRefertoController {
 				ProgressBar.frameProgressBar.dispose();
 			}
 			else {
-				ElencoRefertiController elenco=new ElencoRefertiController();
+				new ElencoRefertiController();
 			}	
 			soapConnection.close();
 		}catch (SOAPFaultException e){

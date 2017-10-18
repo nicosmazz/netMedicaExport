@@ -109,7 +109,7 @@ public class NetMedicaExportController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CodificationRefertoController(view.getPanelCenter());
+				new CodificationRefertoController(view);
 			}
 		});
 	}

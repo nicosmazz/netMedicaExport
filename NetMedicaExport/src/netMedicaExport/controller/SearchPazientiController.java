@@ -1,12 +1,10 @@
 package netMedicaExport.controller;
 
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.JProgressBar;
 import javax.swing.border.Border;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
@@ -114,7 +112,7 @@ public class SearchPazientiController {
 				 	Node nodeIdPaziente =elementBody.getElementsByTagName("id_paziente").item(0);
 				 	idPaziente=nodeIdPaziente.getTextContent();
 				 	System.out.println(nodeIdPaziente.getTextContent()+"\n");
-		            InvioRefertoController invio= new InvioRefertoController();
+		            new InvioRefertoController();
 		        }	
 		        soapConnection.close();
 			}catch (SOAPFaultException e){

@@ -33,13 +33,13 @@ public class LoginController {
 	public static String password="";
 	public static String verificaErroreLogin=null;
 	private NetMedicaLogin panelLogin;
-	private ProgressBar barra;
+	
 	
 			    
 	public LoginController(){
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn:FIMMGwsdl#login";
-		barra=new ProgressBar();
+		new ProgressBar();
 		panelLogin=new NetMedicaLogin();
 		panelLogin.getBtnLogin().addActionListener(new ActionListener() {
 			
@@ -101,7 +101,7 @@ public class LoginController {
 			 	Node nodeToken =elementBody.getElementsByTagName("token").item(0);
 			 	token=nodeToken.getTextContent();
 			 	System.out.println(nodeToken.getTextContent()+"\n");
-			 	SearchPazientiController search=new SearchPazientiController();
+			 	new SearchPazientiController();
 			}	
 			soapConnection.close();
 		}catch (SOAPFaultException e){

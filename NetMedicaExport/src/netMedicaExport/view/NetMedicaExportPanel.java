@@ -49,6 +49,7 @@ public class NetMedicaExportPanel extends JPanel {
 	private JLabel lblValoreOrario;
 	private JButton btnPulisci;
 	private JButton btnExport;
+	private JPanel panelDescrizione;
 
 	public NetMedicaExportPanel() {
 		setLayout(new BorderLayout(0, 0));
@@ -58,7 +59,7 @@ public class NetMedicaExportPanel extends JPanel {
 		add(panelCenter);
 		panelCenter.setLayout(new BoxLayout(panelCenter, BoxLayout.Y_AXIS));
 
-		JPanel panelDescrizione = new JPanel();
+		panelDescrizione = new JPanel();
 		panelDescrizione.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelCenter.add(panelDescrizione);
 		panelDescrizione.setLayout(new BoxLayout(panelDescrizione, BoxLayout.X_AXIS));
@@ -291,6 +292,10 @@ public class NetMedicaExportPanel extends JPanel {
 		btnPulisci = new JButton("Pulisci");
 		btnPulisci.setEnabled(false);
 		panelSouth.add(btnPulisci);
+	}
+
+	public JPanel getPanelDescrizione() {
+		return panelDescrizione;
 	}
 
 	public JPanel getPanelStatoE1Sx() {
