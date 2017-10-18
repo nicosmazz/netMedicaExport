@@ -27,11 +27,11 @@ import netMedicaExport.view.ProgressBar;
 	
 public class LoginController {
 	
-	public static String token;
-	public static String directory="";
-	public static String username="";
-	public static String password="";
-	public static String verificaErroreLogin=null;
+	private static String token;
+	private static String directory="";
+	private static String username="";
+	private static String password="";
+	private static String verificaErroreLogin=null;
 	private NetMedicaLogin panelLogin;
 	private static byte[] encodedBytes;
 			    
@@ -101,7 +101,7 @@ public class LoginController {
 			 	Node nodeToken =elementBody.getElementsByTagName("token").item(0);
 			 	token=nodeToken.getTextContent();
 			 	System.out.println(nodeToken.getTextContent()+"\n");
-			 	new SearchPazientiController(encodedBytes);
+			 	new SearchPazientiController(encodedBytes,token,directory);
 			}	
 			soapConnection.close();
 		}catch (SOAPFaultException e){

@@ -20,9 +20,19 @@ import netMedicaExport.view.ProgressBar;
 	
 public class ElencoRefertiController {
 	
-	public static String verificaErroreElencoReferti=null;
+	private static String verificaErroreElencoReferti=null;
+	private static String stringIdTipoDocumento;
+	private static String stringIdEsito;
+	private static String stringToken;
+	private static String stringDirectory;
+	private static String stringIdPaziente;
 				    
-	public ElencoRefertiController(){
+	public ElencoRefertiController(String token, String directory, String idPaziente, String idTipoDocumento, String idEsito){
+		stringToken=token;
+		stringDirectory=directory;
+		stringIdPaziente=idPaziente;
+		stringIdTipoDocumento=idTipoDocumento;
+		stringIdEsito=idEsito;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#elenco_RefertiPaziente";
 		callSoapWebService(soapEndpointUrl, soapAction);
@@ -40,15 +50,15 @@ public class ElencoRefertiController {
 		SOAPBody soapBody = envelope.getBody();
 		SOAPElement soapBodyElem = soapBody.addChildElement(invioRefertoPaziente);
 		SOAPElement soapBodyElem1 = soapBodyElem.addChildElement(token);
-		soapBodyElem1.addTextNode(LoginController.token);
+		soapBodyElem1.addTextNode(stringToken);
 		SOAPElement soapBodyElem2 = soapBodyElem.addChildElement(keyCartella);
-		soapBodyElem2.addTextNode(LoginController.directory);
+		soapBodyElem2.addTextNode(stringDirectory);
 		SOAPElement soapBodyElem3 = soapBodyElem.addChildElement(idPaz);
-		soapBodyElem3.addTextNode(SearchPazientiController.idPaziente);
+		soapBodyElem3.addTextNode(stringIdPaziente);
 		SOAPElement soapBodyElem4 = soapBodyElem.addChildElement(idEsito1);
-		soapBodyElem4.addTextNode(InvioRefertoController.idEsito);
+		soapBodyElem4.addTextNode(stringIdEsito);
 		SOAPElement soapBodyElem5 = soapBodyElem.addChildElement(idTipoDoc);
-		soapBodyElem5.addTextNode(InvioRefertoController.idTipoDocumento);		
+		soapBodyElem5.addTextNode(stringIdTipoDocumento);		
 	}
 
 	private static void callSoapWebService(String soapEndpointUrl, String soapAction) {

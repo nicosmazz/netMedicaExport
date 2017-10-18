@@ -26,14 +26,18 @@ import netMedicaExport.view.ProgressBar;
 
 public class SearchPazientiController {
 	
-	public static String verificaErroreSearch=null;
-	public static String codiceFiscale="";
-	public static String idPaziente="";
+	private static String verificaErroreSearch=null;
+	private static String codiceFiscale="";
+	private static String idPaziente="";
 	private NetMedicaSearch panelSearch;
 	private static byte[] encodedBytes;
+	private static String stringToken;
+	private static String stringDirectory;
 
-		public SearchPazientiController(byte[] bytes){
+		public SearchPazientiController(byte[] bytes, String token, String directory){
 			encodedBytes = bytes;
+			stringToken=token;
+			stringDirectory=directory;
 			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		    String soapAction = "urn:FIMMGwsdl#search_pazienti";
 		    panelSearch=new NetMedicaSearch();
@@ -72,9 +76,9 @@ public class SearchPazientiController {
 		    SOAPBody soapBody = envelope.getBody();
 		    SOAPElement soapBodyElem = soapBody.addChildElement(search);
 		    SOAPElement soapBodyElem1 = soapBodyElem.addChildElement(token);
-		    soapBodyElem1.addTextNode(LoginController.token);
+		    soapBodyElem1.addTextNode(stringToken);
 		    SOAPElement soapBodyElem2 = soapBodyElem.addChildElement(directory);
-		    soapBodyElem2.addTextNode(LoginController.directory);
+		    soapBodyElem2.addTextNode(stringDirectory);
 		    SOAPElement soapBodyElem3 = soapBodyElem.addChildElement(idPaz);
 		    soapBodyElem3.addTextNode("");
 		    SOAPElement soapBodyElem4 = soapBodyElem.addChildElement(cognome);
@@ -114,7 +118,7 @@ public class SearchPazientiController {
 				 	Node nodeIdPaziente =elementBody.getElementsByTagName("id_paziente").item(0);
 				 	idPaziente=nodeIdPaziente.getTextContent();
 				 	System.out.println(nodeIdPaziente.getTextContent()+"\n");
-		            new InvioRefertoController(encodedBytes);
+		            new InvioRefertoController(encodedBytes,stringToken,stringDirectory,idPaziente);
 		        }	
 		        soapConnection.close();
 			}catch (SOAPFaultException e){

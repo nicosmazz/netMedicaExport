@@ -25,16 +25,22 @@ import netMedicaExport.view.ProgressBar;
 
 public class InvioRefertoController {
 	
-	public static String idTipoDocumento="";
-	public static String identificativo="";
-	public static String dataDocumento="";
-	public static String idEsito="";
-	public static String verificaErroreInvio=null;
+	private static String idTipoDocumento="";
+	private static String identificativo="";
+	private static String dataDocumento="";
+	private static String idEsito="";
+	private static String verificaErroreInvio=null;
 	private NetMedicaInvioReferto panelInvio;
 	private static byte[] encodedBytes;
+	private static String stringToken;
+	private static String stringDirectory;
+	private static String stringIdPaziente;
 	
-	public InvioRefertoController(byte[] bytes){
+	public InvioRefertoController(byte[] bytes, String token,String directory, String idPaziente){
 		encodedBytes = bytes;
+		stringToken=token;
+		stringDirectory=directory;
+		stringIdPaziente=idPaziente;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#invio_RefertoPaziente";
 		panelInvio=new NetMedicaInvioReferto();
@@ -76,13 +82,13 @@ public class InvioRefertoController {
 		SOAPBody soapBody = envelope.getBody();
 		SOAPElement soapBodyElem = soapBody.addChildElement(invioRefertoPaziente);
 		SOAPElement soapBodyElem1 = soapBodyElem.addChildElement(token);
-		soapBodyElem1.addTextNode(LoginController.token);
+		soapBodyElem1.addTextNode(stringToken);
 		SOAPElement soapBodyElem2 = soapBodyElem.addChildElement(keyCartella);
-		soapBodyElem2.addTextNode(LoginController.directory);
+		soapBodyElem2.addTextNode(stringDirectory);
 		SOAPElement soapBodyElem3 = soapBodyElem.addChildElement(idReferto);
 		soapBodyElem3.addTextNode("");
 		SOAPElement soapBodyElem4 = soapBodyElem.addChildElement(idPaz);
-		soapBodyElem4.addTextNode(SearchPazientiController.idPaziente);
+		soapBodyElem4.addTextNode(stringIdPaziente);
 		SOAPElement soapBodyElem5 = soapBodyElem.addChildElement(idTipoDoc);
 		soapBodyElem5.addTextNode(idTipoDocumento);
 		SOAPElement soapBodyElem6 = soapBodyElem.addChildElement(identificativo1);
@@ -90,8 +96,8 @@ public class InvioRefertoController {
 		SOAPElement soapBodyElem7 = soapBodyElem.addChildElement(dataDoc);
 		soapBodyElem7.addTextNode(dataDocumento);
 		SOAPElement soapBodyElem8 = soapBodyElem.addChildElement(referto);
-		soapBodyElem8.addTextNode(encodedBytes.toString());
-		System.out.println(String.valueOf(encodedBytes));
+		soapBodyElem8.addTextNode(new String(encodedBytes));
+		//System.out.println(new String(encodedBytes));
 		SOAPElement soapBodyElem9 = soapBodyElem.addChildElement(idEsito1);
 		soapBodyElem9.addTextNode(idEsito);
 		
@@ -115,7 +121,7 @@ public class InvioRefertoController {
 				ProgressBar.frameProgressBar.dispose();
 			}
 			else {
-				new ElencoRefertiController();
+				new ElencoRefertiController(stringToken,stringDirectory,stringIdPaziente,idTipoDocumento,idEsito);
 			}	
 			soapConnection.close();
 		}catch (SOAPFaultException e){
