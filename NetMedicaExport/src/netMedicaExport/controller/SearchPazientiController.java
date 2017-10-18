@@ -30,8 +30,10 @@ public class SearchPazientiController {
 	public static String codiceFiscale="";
 	public static String idPaziente="";
 	private NetMedicaSearch panelSearch;
+	private static byte[] encodedBytes;
 
-		public SearchPazientiController(){
+		public SearchPazientiController(byte[] bytes){
+			encodedBytes = bytes;
 			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		    String soapAction = "urn:FIMMGwsdl#search_pazienti";
 		    panelSearch=new NetMedicaSearch();
@@ -112,7 +114,7 @@ public class SearchPazientiController {
 				 	Node nodeIdPaziente =elementBody.getElementsByTagName("id_paziente").item(0);
 				 	idPaziente=nodeIdPaziente.getTextContent();
 				 	System.out.println(nodeIdPaziente.getTextContent()+"\n");
-		            new InvioRefertoController();
+		            new InvioRefertoController(encodedBytes);
 		        }	
 		        soapConnection.close();
 			}catch (SOAPFaultException e){

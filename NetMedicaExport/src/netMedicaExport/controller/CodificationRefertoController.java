@@ -17,7 +17,6 @@ import netMedicaExport.view.NetMedicaExportPanel;
 public class CodificationRefertoController {
 
 	public BufferedImage bImage;
-	public static byte[] encodedBytes;
 	
 	public CodificationRefertoController(NetMedicaExportPanel view){
 		
@@ -47,9 +46,9 @@ public class CodificationRefertoController {
 			e.printStackTrace();
 		}
 	    
-	    encodedBytes= Base64.getEncoder().encode(byteArrOS.toByteArray());
-		//System.out.println("encodedBytes \n" + new String(encodedBytes));
-		new LoginController();
+	    byte[] encodedBytes= Base64.getEncoder().encode(byteArrOS.toByteArray());
+	    System.out.println(encodedBytes.toString());
+		new LoginController(encodedBytes);
 	}
 	
 	private static BufferedImage getImageFromComponent(Component panelDescrizione, Component panelGraphs, Component panelValori, NetMedicaExportPanel view) {

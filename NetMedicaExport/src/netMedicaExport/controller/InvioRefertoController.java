@@ -31,8 +31,10 @@ public class InvioRefertoController {
 	public static String idEsito="";
 	public static String verificaErroreInvio=null;
 	private NetMedicaInvioReferto panelInvio;
-				    
-	public InvioRefertoController(){
+	private static byte[] encodedBytes;
+	
+	public InvioRefertoController(byte[] bytes){
+		encodedBytes = bytes;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#invio_RefertoPaziente";
 		panelInvio=new NetMedicaInvioReferto();
@@ -88,7 +90,8 @@ public class InvioRefertoController {
 		SOAPElement soapBodyElem7 = soapBodyElem.addChildElement(dataDoc);
 		soapBodyElem7.addTextNode(dataDocumento);
 		SOAPElement soapBodyElem8 = soapBodyElem.addChildElement(referto);
-		soapBodyElem8.addTextNode(new String(CodificationRefertoController.encodedBytes));
+		soapBodyElem8.addTextNode(encodedBytes.toString());
+		System.out.println(String.valueOf(encodedBytes));
 		SOAPElement soapBodyElem9 = soapBodyElem.addChildElement(idEsito1);
 		soapBodyElem9.addTextNode(idEsito);
 		
