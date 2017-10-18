@@ -41,7 +41,7 @@ public class CodificationRefertoController {
 	    
 	    ByteArrayOutputStream byteArrOS = new ByteArrayOutputStream();
 	    try {
-			ImageIO.write(bImage, "jpg", byteArrOS);
+			ImageIO.write(immagineReferto, "jpg", byteArrOS);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
