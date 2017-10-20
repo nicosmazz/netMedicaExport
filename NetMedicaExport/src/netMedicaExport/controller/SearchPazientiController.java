@@ -42,6 +42,8 @@ public class SearchPazientiController {
 			stringDirectory=directory;
 			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		    String soapAction = "urn:FIMMGwsdl#search_pazienti";
+		    Border border = BorderFactory.createTitledBorder("Ricerca in corso...");
+			ProgressBar.progressBar.setBorder(border);
 		    panelSearch=new NetMedicaSearch();
 			panelSearch.getBtnSearch().addActionListener(new ActionListener() {
 				
@@ -68,6 +70,8 @@ public class SearchPazientiController {
 			controlPatologie=flagPatologie;
 			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		    String soapAction = "urn:FIMMGwsdl#search_pazienti";
+		    Border border = BorderFactory.createTitledBorder("Ricerca in corso...");
+			ProgressBar.progressBar.setBorder(border);
 		    panelSearch=new NetMedicaSearch();
 			panelSearch.getBtnSearch().addActionListener(new ActionListener() {
 				
@@ -78,6 +82,7 @@ public class SearchPazientiController {
 						NetMedicaSearch.frameSearch.setVisible(false);
 						NetMedicaSearch.frameSearch.dispose();
 						callSoapWebService(soapEndpointUrl, soapAction);
+						
 					}
 					else if (codiceFiscale.equals("")){
 						NetMedicaSearch.lblError.setVisible(true);
@@ -127,8 +132,6 @@ public class SearchPazientiController {
 
 		private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
 			try {
-				Border border = BorderFactory.createTitledBorder("Ricerca in corso...");
-				ProgressBar.progressBar.setBorder(border);
 		        SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 		        SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 		        SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(soapAction), soapEndpointUrl);

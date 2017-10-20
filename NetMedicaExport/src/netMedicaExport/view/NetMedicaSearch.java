@@ -41,7 +41,6 @@ public class NetMedicaSearch extends JFrame{
 		Container content = frameSearch.getContentPane();
 		frameSearch.setSize(500, 150);
 		frameSearch.setTitle("Ricerca del paziente");
-		frameSearch.setLocationRelativeTo(null);
 		panelInsert.setLayout(new VerticalLayout(0, VerticalLayout.LEFT, VerticalLayout.TOP));
 		content.add(panelInsert);
 		

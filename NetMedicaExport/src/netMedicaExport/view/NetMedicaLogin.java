@@ -49,7 +49,6 @@ public class NetMedicaLogin extends JFrame{
 		frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container content = frameLogin.getContentPane();
 		frameLogin.setSize(500, 250);
-		frameLogin.setLocationRelativeTo(null);
 		
 		frameLogin.setTitle("Autenticazione");
 		panelInsert.setLayout(new VerticalLayout(0, VerticalLayout.LEFT, VerticalLayout.TOP));

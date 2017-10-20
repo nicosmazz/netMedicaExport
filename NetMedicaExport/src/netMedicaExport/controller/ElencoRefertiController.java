@@ -35,6 +35,8 @@ public class ElencoRefertiController {
 		stringIdEsito=idEsito;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#elenco_RefertiPaziente";
+		Border border = BorderFactory.createTitledBorder("Controllo elenco referti in corso...");
+		ProgressBar.progressBar.setBorder(border);
 		callSoapWebService(soapEndpointUrl, soapAction);
 	}
 
@@ -63,8 +65,6 @@ public class ElencoRefertiController {
 
 	private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
 		try {
-			Border border = BorderFactory.createTitledBorder("Controllo del referto in corso...");
-			ProgressBar.progressBar.setBorder(border);
 			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 			SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 
@@ -75,13 +75,13 @@ public class ElencoRefertiController {
             System.out.println();
 			verificaErroreElencoReferti=faultCode(soapResponse);
 			if(verificaErroreElencoReferti!=null){
-				JOptionPane.showMessageDialog(null, "Errore connessione");
 				ProgressBar.frameProgressBar.dispose();
+				JOptionPane.showMessageDialog(null, "Errore connessione");
+				
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Il referto è presente nell'elenco");
 				ProgressBar.frameProgressBar.dispose();
-				
+				JOptionPane.showMessageDialog(null, "Il referto è presente nell'elenco");				
 			}	
 			soapConnection.close();
 		}catch (SOAPFaultException e){

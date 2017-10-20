@@ -41,6 +41,7 @@ public class SearchPatologieController {
 	private static String stringIdPaziente;
 	private static String stringToken;
 	private static String stringDirectory;
+	private static int i;
 	
 		public SearchPatologieController(String token, String directory, String idPaziente){
 			stringToken=token;
@@ -48,6 +49,8 @@ public class SearchPatologieController {
 			stringIdPaziente=idPaziente;
 			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 			String soapAction = "urn: FIMMGwsdl#search_patologie";
+			Border border = BorderFactory.createTitledBorder("Ricerca patologie in corso...");
+			ProgressBar.progressBar.setBorder(border);
 			callSoapWebService(soapEndpointUrl, soapAction);
 		}
 
@@ -70,8 +73,6 @@ public class SearchPatologieController {
 
 		private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
 			try {
-				Border border = BorderFactory.createTitledBorder("Ricerca patologie in corso...");
-				ProgressBar.progressBar.setBorder(border);
 			    SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 			    SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 			    SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(soapAction), soapEndpointUrl);
@@ -84,6 +85,7 @@ public class SearchPatologieController {
 			    	JOptionPane.showMessageDialog(null, "Non è presente alcuna patologia");
 			    }
 			    else {
+			    	ProgressBar.frameProgressBar.dispose();
 			    	NodeList searchPatologie = soapResponse.getSOAPBody().getElementsByTagName("item");
 			    	JFileChooser savePatologie = new JFileChooser();
 				    savePatologie.setDialogTitle("Salva l'elenco delle patologie");
@@ -101,7 +103,7 @@ public class SearchPatologieController {
 				            ex.printStackTrace();
 				        }
 				    }
-			    	for (int i = 0; i < searchPatologie.getLength(); i++) 
+			    	for (i = 0; i < searchPatologie.getLength(); i++) 
 			        {
 			            Node nodePatologia = searchPatologie.item(i);
 			            Element elementPatologia = (Element) nodePatologia;

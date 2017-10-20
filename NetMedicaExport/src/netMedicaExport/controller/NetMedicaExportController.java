@@ -60,7 +60,6 @@ public class NetMedicaExportController {
 	private JFrame frame;
 	private DecimalFormat formatter = new DecimalFormat("#0.00");
 	private NetMedicaExportController netMedicaController;
-	private boolean controlExport=false;
 	private boolean controlFarmaci=false;
 	private boolean controlPatologie=false;
 
@@ -110,6 +109,7 @@ public class NetMedicaExportController {
 			public void actionPerformed(ActionEvent ev) {
 				controlFarmaci=true;
 				new LoginController(controlFarmaci,controlPatologie);
+				controlFarmaci=false;
 			}
 		});
 		
@@ -117,6 +117,7 @@ public class NetMedicaExportController {
 			public void actionPerformed(ActionEvent ev) {
 				controlPatologie=true;
 				new LoginController(controlFarmaci,controlPatologie);
+				controlPatologie=false;
 			}
 		});
 		

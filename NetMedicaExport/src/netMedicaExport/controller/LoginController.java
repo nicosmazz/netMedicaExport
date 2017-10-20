@@ -41,7 +41,6 @@ public class LoginController {
 		encodedBytes = bytes;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn:FIMMGwsdl#login";
-		new ProgressBar();
 		panelLogin=new NetMedicaLogin();
 		panelLogin.getBtnLogin().addActionListener(new ActionListener() {
 			
@@ -53,6 +52,9 @@ public class LoginController {
 				if((!username.equals(""))&&(!password.equals(""))&&(!directory.equals(""))){
 					NetMedicaLogin.frameLogin.setVisible(false);
 					NetMedicaLogin.frameLogin.dispose();
+					new ProgressBar();
+					Border border = BorderFactory.createTitledBorder("Login in corso...");
+					ProgressBar.progressBar.setBorder(border);
 					callSoapWebService(soapEndpointUrl, soapAction);
 				}
 				else if ((username.equals(""))||(password.equals(""))||(directory.equals(""))){
@@ -69,7 +71,6 @@ public class LoginController {
 		controlPatologie=flagPatologie;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn:FIMMGwsdl#login";
-		new ProgressBar();
 		panelLogin=new NetMedicaLogin();
 		panelLogin.getBtnLogin().addActionListener(new ActionListener() {
 			
@@ -81,6 +82,9 @@ public class LoginController {
 				if((!username.equals(""))&&(!password.equals(""))&&(!directory.equals(""))){
 					NetMedicaLogin.frameLogin.setVisible(false);
 					NetMedicaLogin.frameLogin.dispose();
+					new ProgressBar();
+					Border border = BorderFactory.createTitledBorder("Login in corso...");
+					ProgressBar.progressBar.setBorder(border);
 					callSoapWebService(soapEndpointUrl, soapAction);
 				}
 				else if ((username.equals(""))||(password.equals(""))||(directory.equals(""))){
@@ -111,8 +115,7 @@ public class LoginController {
 
 	private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
 		try { 
-			Border border = BorderFactory.createTitledBorder("Login in corso...");
-			ProgressBar.progressBar.setBorder(border);
+			
 			// Create SOAP Connection
 			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 			SOAPConnection soapConnection = soapConnectionFactory.createConnection();

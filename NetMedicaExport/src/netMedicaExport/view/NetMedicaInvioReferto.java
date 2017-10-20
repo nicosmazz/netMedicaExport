@@ -58,7 +58,6 @@ public class NetMedicaInvioReferto extends JFrame{
 		Container content = frameInvio.getContentPane();
 		frameInvio.setSize(500, 300);
 		frameInvio.setTitle("Invio del referto");
-		frameInvio.setLocationRelativeTo(null);
 		panelInsert.setLayout(new VerticalLayout(0, VerticalLayout.LEFT, VerticalLayout.TOP));
 		content.add(panelInsert);
 		

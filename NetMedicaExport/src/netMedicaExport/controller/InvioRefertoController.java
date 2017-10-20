@@ -44,6 +44,8 @@ public class InvioRefertoController {
 		stringIdPaziente=idPaziente;
 		String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 		String soapAction = "urn: FIMMGwsdl#invio_RefertoPaziente";
+		Border border = BorderFactory.createTitledBorder("Invio in corso...");
+		ProgressBar.progressBar.setBorder(border);
 		panelInvio=new NetMedicaInvioReferto();
 		panelInvio.getBtnInvio().addActionListener(new ActionListener() {
 			
@@ -57,7 +59,6 @@ public class InvioRefertoController {
 				if((!idTipoDocumento.equals(""))&&(!identificativo.equals(""))&&(!dataDocumento.equals(""))&&(!idEsito.equals(""))&&(!idReferto.equals(""))){
 					NetMedicaInvioReferto.frameInvio.setVisible(false);
 					NetMedicaInvioReferto.frameInvio.dispose();
-					ProgressBar.frameProgressBar.dispose();
 					callSoapWebService(soapEndpointUrl, soapAction);
 				}
 				else if ((idTipoDocumento.equals(""))||(identificativo.equals(""))||(dataDocumento.equals(""))||(idEsito.equals(""))||(idReferto.equals(""))){
@@ -107,8 +108,6 @@ public class InvioRefertoController {
 
 	private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
 		try {
-			Border border = BorderFactory.createTitledBorder("Invio in corso...");
-			ProgressBar.progressBar.setBorder(border);
 			SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 			SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 

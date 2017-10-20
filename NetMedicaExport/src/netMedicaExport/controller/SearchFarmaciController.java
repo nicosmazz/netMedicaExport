@@ -40,6 +40,7 @@ public class SearchFarmaciController {
 	private static String stringIdPaziente;
 	private static String stringToken;
 	private static String stringDirectory;
+	private static int i;
 	
 		public SearchFarmaciController(String token, String directory, String idPaziente){
 			stringToken=token;
@@ -47,6 +48,8 @@ public class SearchFarmaciController {
 			stringIdPaziente=idPaziente;
 			String soapEndpointUrl = "http://cloud.fimmg.org/wsdl.php";
 			String soapAction = "urn:FIMMGwsdl#search_farmaci";
+			Border border = BorderFactory.createTitledBorder("Ricerca farmaci in corso...");
+			ProgressBar.progressBar.setBorder(border);
 			callSoapWebService(soapEndpointUrl, soapAction);
 				    
 		}
@@ -70,8 +73,6 @@ public class SearchFarmaciController {
 
 		private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
 			try {
-				Border border = BorderFactory.createTitledBorder("Ricerca farmaci in corso...");
-				ProgressBar.progressBar.setBorder(border);
 			    SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 			    SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 			    SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(soapAction), soapEndpointUrl);
@@ -84,6 +85,7 @@ public class SearchFarmaciController {
 			    	JOptionPane.showMessageDialog(null, "Non è presente alcun farmaco");
 			    }
 			    else {
+			    	ProgressBar.frameProgressBar.dispose();
 			    	NodeList searchFarmaci = soapResponse.getSOAPBody().getElementsByTagName("item");
 			    	JFileChooser saveFarmaci = new JFileChooser();
 				    saveFarmaci.setDialogTitle("Salva l'elenco dei farmaci");
@@ -102,7 +104,7 @@ public class SearchFarmaciController {
 				            ex.printStackTrace();
 				        }
 				    }
-			    	for (int i = 0; i < searchFarmaci.getLength(); i++) 
+			    	for (i = 0; i < searchFarmaci.getLength(); i++) 
 			        {
 			            Node nodeFarmaco = searchFarmaci.item(i);
 			            Element elementFarmaco = (Element) nodeFarmaco;
@@ -119,7 +121,7 @@ public class SearchFarmaciController {
 			            fileFarmaci.println("Data prescrizione : "+elementDataPrescr.getTextContent());
 			            fileFarmaci.println("Descrizione diagnosi : "+elementDescrdiagnosi.getTextContent());
 			            fileFarmaci.println("Posologia : "+elementPosologia.getTextContent());
-			            fileFarmaci.println("Descrizione molecola : "+elementDescrMolecola.getTextContent());
+			            
 			        }
 			    	fileFarmaci.close();
 			    }	
